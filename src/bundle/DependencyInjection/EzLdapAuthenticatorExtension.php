@@ -80,6 +80,15 @@ class EzLdapAuthenticatorExtension extends Extension implements PrependExtension
 
         $userProviderConfig = $ldapConfig['user_provider'];
         $ldapUserProviderId = sprintf('nova_ez.ldap.%s_connection.ldap_user_provider', $name);
+        $attributes = array_merge(
+    [
+                $userProviderConfig['uid_key'],
+                $ezuserConfig['email_attr'],
+                $ezuserConfig['user_group_attr'],
+                $ezuserConfig['group_name_attr']
+            ],
+    array_values($ezuserConfig['attributes'])
+        );
         $container->setDefinition($ldapUserProviderId, new ChildDefinition(EzLdapUserProvider::class))
                   ->setArguments(
                       [
@@ -89,11 +98,13 @@ class EzLdapAuthenticatorExtension extends Extension implements PrependExtension
                           '$searchPassword'    => $userProviderConfig['search_password'],
                           '$uidKey'            => $userProviderConfig['uid_key'],
                           '$filter'            => $userProviderConfig['filter'],
+                          '$attributes' => $attributes
                       ]
                   )
                   ->addMethodCall('setLdapEntryConverter', [new Reference($ldapEntryConverterId)]);
 
         $connectionId = sprintf('nova_ez.ldap.%s_connection', $name);
+
         $container->setDefinition($connectionId, new ChildDefinition(LdapConnection::class))
                   ->setPublic(true)
                   ->setArguments(
@@ -106,11 +117,8 @@ class EzLdapAuthenticatorExtension extends Extension implements PrependExtension
                               'ldap_user_provider' => $ldapConfig['user_provider'],
                               'ldap_auth'          => [
                                   'dn_string'    => $ldapConfig['user_provider']['base_dn'],
-                                  'query_string' => str_replace(
-                                      '{uid_key}',
-                                      $userProviderConfig['uid_key'],
-                                      $userProviderConfig['filter']
-                                  ),
+                                  'query_string' => $userProviderConfig['filter'],
+                                  'uid_key'      => $userProviderConfig['uid_key']
                               ],
                           ],
                       ]

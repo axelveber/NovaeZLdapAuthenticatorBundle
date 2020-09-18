@@ -63,7 +63,12 @@ class EzLdapAuthenticationProvider extends LdapBindAuthenticationProvider
         if ($ldapConnection) {
             $authConfig = $ldapConnection->getConfig('ldap_auth');
             $dnString   = $authConfig['dn_string'] ?? $dnString;
-            $this->setQueryString($authConfig['query_string']);
+            $queryString = str_replace(
+                '{uid_key}',
+                $authConfig['uid_key'],
+                $authConfig['query_string']
+            );
+            $this->setQueryString($queryString);
         }
         $this->userProvider = $userProvider;
         $this->ldap         = $ldap;

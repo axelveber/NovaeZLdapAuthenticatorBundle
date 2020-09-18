@@ -71,6 +71,8 @@ class Configuration implements ConfigurationInterface
                                         ->defaultValue([])
                                         ->prototype('scalar')->end()
                                     ->end()
+                                    ->scalarNode('user_group_attr')->end()
+                                    ->scalarNode('group_name_attr')->end()
                                 ->end()
                             ->end()
         //                ->arrayNode('default_roles')
