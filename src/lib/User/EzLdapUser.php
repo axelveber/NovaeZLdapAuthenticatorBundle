@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NovaeZLDAPAuthenticator Bundle.
  *
@@ -9,7 +10,7 @@
  * @license   https://github.com/Novactive/NovaeZLdapAuthenticatorBundle/blob/master/LICENSE MIT Licence
  */
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace Novactive\eZLDAPAuthenticator\User;
 
@@ -46,13 +47,12 @@ class EzLdapUser implements UserInterface
         array $attributes,
         array $roles,
         array $groups
-    )
-    {
-        $this->username = $username;
-        $this->email = $email;
+    ) {
+        $this->username   = $username;
+        $this->email      = $email;
         $this->attributes = $attributes;
-        $this->roles = $roles;
-        $this->groups = $groups;
+        $this->roles      = $roles;
+        $this->groups     = $groups;
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NovaeZLDAPAuthenticator Bundle.
  *
@@ -8,6 +9,7 @@
  * @copyright 2019 Novactive
  * @license   https://github.com/Novactive/NovaeZLdapAuthenticatorBundle/blob/master/LICENSE MIT Licence
  */
+
 declare(strict_types=1);
 
 namespace Novactive\Bundle\eZLDAPAuthenticatorBundle\DependencyInjection;
@@ -80,14 +82,14 @@ class EzLdapAuthenticatorExtension extends Extension implements PrependExtension
 
         $userProviderConfig = $ldapConfig['user_provider'];
         $ldapUserProviderId = sprintf('nova_ez.ldap.%s_connection.ldap_user_provider', $name);
-        $attributes = array_merge(
-    [
+        $attributes         = array_merge(
+            [
                 $userProviderConfig['uid_key'],
                 $ezuserConfig['email_attr'],
                 $ezuserConfig['user_group_attr'],
                 $ezuserConfig['group_name_attr']
             ],
-    array_values($ezuserConfig['attributes'])
+            array_values($ezuserConfig['attributes'])
         );
         $container->setDefinition($ldapUserProviderId, new ChildDefinition(EzLdapUserProvider::class))
                   ->setArguments(

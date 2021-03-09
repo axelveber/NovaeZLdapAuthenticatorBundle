@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NovaeZLDAPAuthenticator Bundle.
  *
@@ -8,6 +9,7 @@
  * @copyright 2019 Novactive
  * @license   https://github.com/Novactive/NovaeZLdapAuthenticatorBundle/blob/master/LICENSE MIT Licence
  */
+
 declare(strict_types=1);
 
 namespace Novactive\eZLDAPAuthenticator\Authentication\Provider;
@@ -61,8 +63,8 @@ class EzLdapAuthenticationProvider extends LdapBindAuthenticationProvider
         LdapConnection $ldapConnection = null
     ) {
         if ($ldapConnection) {
-            $authConfig = $ldapConnection->getConfig('ldap_auth');
-            $dnString   = $authConfig['dn_string'] ?? $dnString;
+            $authConfig  = $ldapConnection->getConfig('ldap_auth');
+            $dnString    = $authConfig['dn_string'] ?? $dnString;
             $queryString = str_replace(
                 '{uid_key}',
                 $authConfig['uid_key'],

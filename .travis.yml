@@ -11,8 +11,9 @@ cache:
   directories:
     - $HOME/.composer/cache
 
-install:
-  - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer install --no-interaction
+before_install:
+  - 'echo "$TOKEN" | docker login ghcr.io -u "$USERNAME" --password-stdin'
+  - 'docker pull ghcr.io/novactive/novadroid:latest'
 
 script:
-  - composer tests
+  - 'docker run --rm -i -v $(pwd):/project ghcr.io/novactive/novadroid:latest check --handlers=javascript,php,stylesheets,yaml --disable-tools=sensiosecuritychecker -vv'
