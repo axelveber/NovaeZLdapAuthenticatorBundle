@@ -2,6 +2,25 @@
 
 ----
 
+This fork is here to adress compatibility issues with Ibexa 3 (formerly eZ Platform). It is NOT stable in any way.
+
+Before following the install instructions below, make sure to add the following to your `composer.json` file : 
+
+```json5
+{
+    // ...
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/axelveber/NovaeZLdapAuthenticatorBundle.git"
+        }
+    ],
+    // ...
+}
+```
+
+----
+
 This repository is what we call a "subtree split": a read-only copy of one directory of the main repository. 
 It is used by Composer to allow developers to depend on specific bundles.
 
