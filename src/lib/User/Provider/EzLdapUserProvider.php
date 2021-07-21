@@ -22,7 +22,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\Ldap\Entry;
 use Symfony\Component\Ldap\Exception\ConnectionException;
 use Symfony\Component\Ldap\LdapInterface;
-use Symfony\Component\Security\Core\User\LdapUserProvider;
+use Symfony\Component\Ldap\Security\LdapUserProvider;
 
 class EzLdapUserProvider extends LdapUserProvider
 {
@@ -74,9 +74,6 @@ class EzLdapUserProvider extends LdapUserProvider
         $this->searchPassword = $searchPassword;
     }
 
-    /**
-     * @required
-     */
     public function setLdapEntryConverter(LdapEntryConverter $ldapEntryConverter): void
     {
         $this->ldapEntryConverter = $ldapEntryConverter;

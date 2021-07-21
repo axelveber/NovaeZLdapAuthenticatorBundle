@@ -24,9 +24,9 @@ class Configuration implements ConfigurationInterface
 
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
+        $treeBuilder = new TreeBuilder('nova_ez_ldap');
         $treeBuilder
-            ->root('nova_ez_ldap')
+            ->getRootNode()
             ->children()
                 ->arrayNode('connections')
                     ->useAttributeAsKey('name')

@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace Novactive\eZLDAPAuthenticator\Ldap;
 
 use Symfony\Component\Ldap\Ldap;
-use Symfony\Component\Security\Core\User\LdapUserProvider;
+use Symfony\Component\Ldap\Security\LdapUserProvider;
 
 class LdapConnection
 {

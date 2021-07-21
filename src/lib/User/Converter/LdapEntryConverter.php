@@ -131,7 +131,7 @@ class LdapEntryConverter
             $eZUserCreateStruct = $userService->newUserCreateStruct(
                 $username,
                 $email,
-                md5(uniqid(EzLdapUser::class, true)),
+                'A' . md5(uniqid(EzLdapUser::class, true)),
                 $mainLanguage
             );
 
