@@ -38,7 +38,7 @@ A bundle to authenticate users against LDAP server
 
 ## Installation
 
-Add the lib to your composer.json, run `composer require novactive/ezldapauthenticatorbundle` to refresh dependencies.
+Add the lib to your composer.json, run `composer require novactive/ezldapauthenticatorbundle:dev-compat-ibexa-3` to refresh dependencies.
 
 Then inject the bundle in the `bundles.php` of your application.
 
